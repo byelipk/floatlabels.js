@@ -93,8 +93,9 @@
                 }
                 var thisElement  = this.normalize(this.$element),
                     currentFlout = thisElement.data('flout');
-                if( thisElement.val() !== "" ) { thisElement.data('flout', '1'); }
-                if( thisElement.val() === "" ) { thisElement.data('flout', '0'); }
+
+                thisElement.data('flout', thisElement.val() ? '1' : '2');
+
                 if( thisElement.data('flout') === '1' && currentFlout !== '1' ) {
                     this.showLabel();
                 }
