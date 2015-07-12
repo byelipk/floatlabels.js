@@ -32,7 +32,7 @@
                     settings      = this.settings,
                     transDuration = settings.transitionDuration,
                     transEasing   = settings.transitionEasing,
-                    thisElement   = this.$element;              
+                    thisElement   = this.$element;
                 var animationCss = {
                     '-webkit-transition'            : 'all ' + transDuration + 's ' + transEasing,
                     '-moz-transition'               : 'all ' + transDuration + 's ' + transEasing,
@@ -72,7 +72,7 @@
                     'font-weight'                   : 'bold',
                     'color'                         : self.settings.blurColor
                 });
-                if( !settings.slideInput ) {                    
+                if( !settings.slideInput ) {
                     thisElement.css({ 'padding-top' : this.inputPaddingTop });
                 }
                 thisElement.on('keyup blur change', function( e ) {
@@ -89,9 +89,9 @@
             checkValue: function( e ) {
                 if( e ) {
                     var keyCode         = e.keyCode || e.which;
-                    if( keyCode === 9 ) { return; }                
+                    if( keyCode === 9 ) { return; }
                 }
-                var thisElement  = this.$element, 
+                var thisElement  = this.normalize(this.$element),
                     currentFlout = thisElement.data('flout');
                 if( thisElement.val() !== "" ) { thisElement.data('flout', '1'); }
                 if( thisElement.val() === "" ) { thisElement.data('flout', '0'); }
@@ -135,6 +135,12 @@
                 window.setTimeout(function() {
                     self.$label.css({ 'display' : 'none' });
                 }, self.settings.transitionDuration * 1000);
+            },
+            normalize: function($e) {
+              if (!$e.val().trim()) {
+                $e.val(null);
+              }
+              return $e;
             }
         };
         $.fn[ pluginName ] = function ( options ) {
